@@ -20,7 +20,7 @@ semantic_skill_list = list(set([
     'integration testing', 'devops', 'artificial intelligence', 'data analysis',
     'system design', 'cybersecurity', 'networking', 'troubleshooting',
     'communication skills', 'problem solving', 'time management', 'team collaboration'
-]) - ENGLISH_STOP_WORDS
+]) - ENGLISH_STOP_WORDS)
 
 # --- Functions ---
 def extract_text(file):
