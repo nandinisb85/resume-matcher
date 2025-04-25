@@ -2,11 +2,6 @@
 
 This project is a web-based application that helps job seekers instantly evaluate how well their resume matches a given job description. It uses both **keyword-based** and **semantic skill matching** to provide a comprehensive fit score and skill analysis.
 
-## 🚀 Live Demo
-
-🔗 [Try the App](your-streamlit-link-here)  
-💻 [View the Code](your-github-repo-link-here)
-
 ---
 
 ## 📌 Features
