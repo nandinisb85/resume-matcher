@@ -44,10 +44,49 @@ st.caption("Built by Nandini • Enhanced with Regex + Semantic Matching 💡")
 
 resume_file = st.file_uploader("📎 Upload your Resume (PDF/DOCX/TXT)", type=["pdf", "docx", "txt"])
 jd_text = st.text_area("📝 Paste the Job Description here")
+import re
 
+def extract_name(resume_text):
+    lines = resume_text.strip().split("\n")
+    # Assume name is in the first 1-2 lines (basic heuristic)
+    return lines[0] if lines else ""
+
+def extract_location(resume_text):
+    pattern = r"\b(?:[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*),?\s?(?:[A-Z]{2})\b"
+    match = re.search(pattern, resume_text)
+    return match.group(0) if match else "N/A"
+
+def extract_summary(resume_text):
+    # Grab the first paragraph (up to 3 lines max)
+    paragraphs = resume_text.strip().split("\n\n")
+    return paragraphs[0].strip() if paragraphs else ""
+
+def extract_years_of_experience(resume_text):
+    year_pattern = r"\b(19|20)\d{2}\b"
+    years = [int(y) for y in re.findall(year_pattern, resume_text)]
+    if years:
+        min_year = min(years)
+        max_year = max(years)
+        yoe = max_year - min_year
+        return f"{yoe}+ years" if yoe >= 1 else "Less than 1 year"
+    return "N/A"
+    
 if resume_file and jd_text:
     # Extract text from resume
     resume_text = extract_text(resume_file)
+    # Extract metadata
+    name = extract_name(resume_text)
+    location = extract_location(resume_text)
+    summary = extract_summary(resume_text)
+    yoe = extract_years_of_experience(resume_text)
+
+    # Display it
+    st.markdown("### 👤 Resume Overview")
+    st.write(f"**Name:** {name}")
+    st.write(f"**Location:** {location}")
+    st.write(f"**Experience:** {yoe}")
+    st.markdown(f"**Summary:**\n> {summary[:300]}{'...' if len(summary) > 300 else ''}")
+
 
     # Regex-based match
     regex_matched = extract_skills(resume_text, semantic_skill_list)
