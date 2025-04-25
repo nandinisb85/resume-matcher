@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 from sentence_transformers import SentenceTransformer, util
 
 # --- Skill Set ---
-semantic_skill_list = [
+semantic_skill_list = list(set([
     'python', 'sql', 'pandas', 'numpy', 'scikit-learn', 'tensorflow', 'pytorch',
     'mlops', 'docker', 'kubernetes', 'airflow', 'machine learning',
     'data visualization', 'streamlit', 'transformers', 'hugging face', 'api',
@@ -20,7 +20,7 @@ semantic_skill_list = [
     'integration testing', 'devops', 'artificial intelligence', 'data analysis',
     'system design', 'cybersecurity', 'networking', 'troubleshooting',
     'communication skills', 'problem solving', 'time management', 'team collaboration'
-] - ENGLISH_STOP_WORDS
+]) - ENGLISH_STOP_WORDS
 
 # --- Functions ---
 def extract_text(file):
